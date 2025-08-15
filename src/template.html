@@ -14,11 +14,11 @@
         </div>
         <div id="sidebar-container">
           <nav id="sidebar-options">
-            <div>➕ Add A New Project</div>
-            <div>🔲 All Projects</div>
-            <div>🕛 Due Today</div>
-            <div>📅 Projects Upcoming</div>
-            <div>📚 Prior Projects</div>
+            <div class="add-project-tab">➕ Add A New Project</div>
+            <div class="all-projects-tab">🔲 All Projects</div>
+            <div class="due-today-tab">🕛 Due Today</div>
+            <div class="projects-upcoming-tab">📅 Projects Upcoming</div>
+            <div class="prior-projects-tab">📚 Prior Projects</div>
           </nav>
         </div>
       </div>
@@ -29,8 +29,72 @@
             <button id="sort-filter-btn" type="button">↕ Sort</button>
             <button id="sort-filter-btn" type="button">🔻 Filter</button>
           </div>
+          <div class="task">
+            <div id="task-container">
+              <div id="task-check">⭕</div>
+              <div id="task-grid">
+                <h1 id="task-heder">Test</h1>
+                <div id="task-description">This is a test</div>
+                <div id="task-date">September 12, 2025</div>
+              </div>
+              <div id="edit-task-container">
+                <div id="edit-btn">✏</div>
+                <div id="priority-btn">‼</div>
+              </div>
+            </div>
+          </div>
+          <div class="task">
+            <div id="task-container">
+              <div id="task-check">⭕</div>
+              <div id="task-grid">
+                <h1 id="task-header">Test</h1>
+                <div id="task-description">This is a test</div>
+                <div id="task-date">September 12, 2025</div>
+              </div>
+              <div id="edit-task-container">
+                <div id="edit-btn">✏</div>
+                <div id="priority-btn">‼</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="add-new-project-section hidden">
+          <div class="add-project-container">
+            <h1>Category:</h1>
+            <input class="add-project-input" type="text" id="category-input" />
+            <h1>Project Name:</h1>
+            <input class="add-project-input" type="text" id="name-input" />
+            <h1>Project Description</h1>
+            <input
+              class="add-project-input"
+              type="text"
+              id="description-input"
+            />
+            <h1>Date Due:</h1>
+            <input class="add-project-date" type="date" id="date-input" />
+            <h1>Priority:</h1>
+            <div class="add-project-radio">
+              <div class="priority">
+                <input type="radio" name="high-priority" id="high-priority" />
+                <div class="priority-box high">High</div>
+              </div>
+              <div class="priority">
+                <input type="radio" name="med-priority" id="med-priority" />
+                <div class="priority-box med">Med</div>
+              </div>
+              <div class="priority">
+                <input type="radio" name="low-priority" id="low-priority" />
+                <div class="priority-box low">Low</div>
+              </div>
+            </div>
+            <div class="submit-cancel-container">
+              <button class="cancel-btn">Cancel</button>
+              <button class="submit-btn">Submit</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </body>
+  <script></script>
 </html>
