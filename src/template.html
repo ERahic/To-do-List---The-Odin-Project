@@ -26,12 +26,18 @@
         <div id="project-container">
           <h1 id="project-header">#Test</h1>
           <div id="sort-filter-container">
-            <button id="sort-filter-btn" type="button">↕ Sort</button>
-            <button id="sort-filter-btn" type="button">🔻 Filter</button>
+            <button id="sort-filter-btn" class="sort-btn" type="button">
+              ↕ Sort
+            </button>
+            <button id="sort-filter-btn" class="filter-btn" type="button">
+              🔻 Filter
+            </button>
           </div>
           <div class="task">
             <div id="task-container">
-              <div id="task-check">⭕</div>
+              <div id="task-check-container">
+                <div id="task-check"></div>
+              </div>
               <div id="task-grid">
                 <h1 id="task-heder">Test</h1>
                 <div id="task-description">This is a test</div>
@@ -45,7 +51,9 @@
           </div>
           <div class="task">
             <div id="task-container">
-              <div id="task-check">⭕</div>
+              <div id="task-check-container">
+                <div id="task-check"></div>
+              </div>
               <div id="task-grid">
                 <h1 id="task-header">Test</h1>
                 <div id="task-description">This is a test</div>
@@ -75,16 +83,33 @@
             <h1>Priority:</h1>
             <div class="add-project-radio">
               <div class="priority">
-                <input type="radio" name="high-priority" id="high-priority" />
-                <div class="priority-box high">High</div>
+                <input
+                  type="radio"
+                  name="priority"
+                  id="high-priority"
+                  value="High"
+                />
+                <label for="high-priority" class="priority-box high"
+                  >High</label
+                >
               </div>
               <div class="priority">
-                <input type="radio" name="med-priority" id="med-priority" />
-                <div class="priority-box med">Med</div>
+                <input
+                  type="radio"
+                  name="priority"
+                  id="med-priority"
+                  value="Medium"
+                />
+                <label for="med-priority" class="priority-box med">Med</label>
               </div>
               <div class="priority">
-                <input type="radio" name="low-priority" id="low-priority" />
-                <div class="priority-box low">Low</div>
+                <input
+                  type="radio"
+                  name="priority"
+                  id="low-priority"
+                  value="Low"
+                />
+                <label for="low-priority" class="priority-box low">Low</label>
               </div>
             </div>
             <div class="submit-cancel-container">
