@@ -1,4 +1,5 @@
 import "./styles.css";
+import { generateTasks, taskDomReference } from "../generateTask";
 
 export const domReference = {
   addProjectTab: document.querySelector(".add-project-tab"),
@@ -17,6 +18,7 @@ export const domReference = {
 export function addProjectBtns() {
   //add project
   domReference.addProjectTab.addEventListener("click", function () {
+    const value = addProjectValues();
     domReference.projectContainer.classList.remove("hidden");
     console.log(`New Project Added`);
   });
@@ -38,6 +40,7 @@ export function addProjectBtns() {
       Description: ${value.descriptionValue}
       Due Date: ${value.dueDateValue}
       Priority: ${value.priority}`);
+    generateTasks();
   });
 }
 
