@@ -1,22 +1,20 @@
-import {
-  domReference,
-  addProjectBtns,
-  addProjectValues,
-} from "./src/addProject";
+import { domReference, addProjectBtns, addProjectValues } from "./addProject";
 
 export const taskDomReference = {
+  sidebarOptions: document.querySelector("#sidebar-options"),
   pageContainer: document.querySelector("#page-container"),
   mainSection: document.querySelector("#main-section"),
   projectContainer: document.querySelector("#project-container"),
   projectHeader: document.querySelector("#project-header"),
-  sortFilterContainer: document.querySelector("#sort-filter-container"),
+  sortFilterContainer: document.querySelector("#sort-filter-addTask-container"),
   sortBtn: document.querySelector(".sort-btn"),
   filterBtn: document.querySelector(".filter-btn"),
+  addTaskBtn: document.querySelector(".addTask-btn"),
   task: document.querySelector(".task"),
   taskContainer: document.querySelector("#task-container"),
   checkContainer: document.querySelector("#task-check-container"),
   taskCheck: document.querySelector("#task-check"),
-  check: document.querySelector("#check"),
+  check: document.querySelectorAll(".check"),
   taskGrid: document.querySelector("#task-grid"),
   taskHeader: document.querySelector("#task-header"),
   taskDescription: document.querySelector("#task-description"),
@@ -28,8 +26,10 @@ export const taskDomReference = {
 
 export function generateTasks() {
   const taskValue = addProjectValues();
+  const addNewTab = newProjectTab();
 
   //generate div
+  taskDomReference.sidebarOptions.appendChild(addNewTab.newTab);
   taskDomReference.mainSection.innerHTML = "";
   taskDomReference.projectContainer.innerHTML = "";
   taskDomReference.taskContainer.innerHTML = "";
@@ -42,12 +42,14 @@ export function generateTasks() {
   );
   taskDomReference.sortFilterContainer.appendChild(taskDomReference.sortBtn);
   taskDomReference.sortFilterContainer.appendChild(taskDomReference.filterBtn);
+  taskDomReference.sortFilterContainer.appendChild(taskDomReference.addTaskBtn);
   taskDomReference.projectContainer.appendChild(taskDomReference.task);
   taskDomReference.task.appendChild(taskDomReference.taskContainer);
   taskDomReference.taskContainer.appendChild(taskDomReference.checkContainer);
   taskDomReference.checkContainer.appendChild(taskDomReference.taskCheck);
-  taskDomReference.taskCheck.appendChild(taskDomReference.check);
+  //taskDomReference.taskCheck.appendChild(taskDomReference.check);
   taskDomReference.taskGrid.innerHTML = "";
+  setPriority();
   taskDomReference.taskContainer.appendChild(taskDomReference.taskGrid);
   taskDomReference.taskHeader.innerHTML = `${taskValue.projectNameValue}`;
   taskDomReference.taskGrid.appendChild(taskDomReference.taskHeader);
@@ -64,4 +66,29 @@ export function generateTasks() {
 
 export function setPriority() {
   const priorityValue = addProjectValues();
+  if (priorityValue.priority === "High") {
+    taskDomReference.taskContainer.style.borderRight = "solid 40px red";
+  } else if (priorityValue.priority === "Medium") {
+    taskDomReference.taskContainer.style.borderRight = "solid 40px yellow";
+  } else if (priorityValue.priority === "Low") {
+    taskDomReference.taskContainer.style.borderRight = "solid 40px green";
+  }
+}
+
+export function newProjectTab() {
+  const value = addProjectValues();
+  const newTab = document.createElement("div");
+  newTab.classList.add(`new-tab`);
+  newTab.innerHTML = `#${value.categoryValue}`;
+
+  return { newTab };
+}
+
+export function deleteTask() {
+  taskDomReference.check.forEach((check) => {
+    check.addEventListener("click", function () {
+      console.log("Task Cleared");
+      check.parentElement.parentElement.parentElement.remove();
+    });
+  });
 }

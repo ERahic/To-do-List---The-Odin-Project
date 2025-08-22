@@ -25,19 +25,30 @@
       <div id="main-section">
         <div id="project-container">
           <h1 id="project-header">#Test</h1>
-          <div id="sort-filter-container">
-            <button id="sort-filter-btn" class="sort-btn" type="button">
+          <div id="sort-filter-addTask-container">
+            <button id="sort-filter-addTask-btn" class="sort-btn" type="button">
               ↕ Sort
             </button>
-            <button id="sort-filter-btn" class="filter-btn" type="button">
+            <button
+              id="sort-filter-addTask-btn"
+              class="filter-btn"
+              type="button"
+            >
               🔻 Filter
+            </button>
+            <button
+              id="sort-filter-addTask-btn"
+              class="addTask-btn"
+              type="button"
+            >
+              ➕ Add Task
             </button>
           </div>
           <div class="task">
             <div id="task-container">
               <div id="task-check-container">
                 <div id="task-check">
-                  <div id="check"></div>
+                  <div class="check"></div>
                 </div>
               </div>
               <div id="task-grid">
@@ -55,13 +66,13 @@
             <div id="task-container">
               <div id="task-check-container">
                 <div id="task-check">
-                  <div id="check"></div>
+                  <div class="check"></div>
                 </div>
               </div>
               <div id="task-grid">
-                <h1 id="task-header">Test</h1>
-                <div id="task-description">This is a test</div>
-                <div id="task-date">September 12, 2025</div>
+                <h1 id="task-header">Test2</h1>
+                <div id="task-description">This is a test2</div>
+                <div id="task-date">September 15, 2025</div>
               </div>
               <div id="edit-task-container">
                 <div id="edit-btn">✏</div>
@@ -71,8 +82,8 @@
           </div>
         </div>
       </div>
-      <div class="add-new-project-section hidden">
-        <div class="add-project-container">
+      <div class="add-new-project-section hidden" id="add-project-section">
+        <form class="add-project-container" id="new-project-form">
           <h1>Category:</h1>
           <input class="add-project-input" type="text" id="category-input" />
           <h1>Project Name:</h1>
@@ -112,10 +123,54 @@
             </div>
           </div>
           <div class="submit-cancel-container">
-            <button class="cancel-btn">Cancel</button>
-            <button class="submit-btn">Submit</button>
+            <button type="submit" class="add-project-cancel-btn">Cancel</button>
+            <button type="reset" class="add-project-submit-btn">Submit</button>
           </div>
-        </div>
+        </form>
+      </div>
+      <div class="add-new-task-section hidden" id="add-task-section">
+        <form class="add-task-container" id="add-task-form">
+          <h1>Project Name:</h1>
+          <input class="add-project-input" type="text" id="name-input" />
+          <h1>Project Description</h1>
+          <input class="add-project-input" type="text" id="description-input" />
+          <h1>Date Due:</h1>
+          <input class="add-project-date" type="date" id="date-input" />
+          <h1>Priority:</h1>
+          <div class="add-project-radio">
+            <div class="priority">
+              <input
+                type="radio"
+                name="priority"
+                id="high-priority"
+                value="High"
+              />
+              <label for="high-priority" class="priority-box high">High</label>
+            </div>
+            <div class="priority">
+              <input
+                type="radio"
+                name="priority"
+                id="med-priority"
+                value="Medium"
+              />
+              <label for="med-priority" class="priority-box med">Med</label>
+            </div>
+            <div class="priority">
+              <input
+                type="radio"
+                name="priority"
+                id="low-priority"
+                value="Low"
+              />
+              <label for="low-priority" class="priority-box low">Low</label>
+            </div>
+          </div>
+          <div class="submit-cancel-container">
+            <button type="submit" class="add-task-cancel-btn">Cancel</button>
+            <button type="reset" class="add-task-submit-btn">Submit</button>
+          </div>
+        </form>
       </div>
     </div>
   </body>
