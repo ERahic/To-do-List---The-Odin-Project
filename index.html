@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  <script defer src="main.js"></script></head>
+  <body>
+    <div id="page-container">
+      <div id="sidebar-section">
+        <div id="header">
+          <img id="logo" src="5952fbca30aef19d93fc.png" alt="Logo" />
+          <h2>To-do List</h2>
+        </div>
+        <div id="sidebar-container">
+          <nav id="sidebar-options">
+            <div class="add-project-tab">➕ Add A New Project</div>
+            <div class="all-projects-tab">🔲 All Projects</div>
+            <div class="due-today-tab">🕛 Due Today</div>
+            <div class="projects-upcoming-tab">📅 Projects Upcoming</div>
+            <div class="prior-projects-tab">📚 Prior Projects</div>
+          </nav>
+        </div>
+      </div>
+      <div id="main-section">
+        <div id="project-container">
+          <h1 id="project-header">#Test</h1>
+          <div id="sort-filter-addTask-container">
+            <button id="sort-filter-addTask-btn" class="sort-btn" type="button">
+              ↕ Sort
+            </button>
+            <button
+              id="sort-filter-addTask-btn"
+              class="filter-btn"
+              type="button"
+            >
+              🔻 Filter
+            </button>
+            <button
+              id="sort-filter-addTask-btn"
+              class="addTask-btn"
+              type="button"
+            >
+              ➕ Add Task
+            </button>
+          </div>
+          <div class="task">
+            <div id="task-container">
+              <div id="task-check-container">
+                <div id="task-check">
+                  <div class="check"></div>
+                </div>
+              </div>
+              <div id="task-grid">
+                <h1 id="task-header">Test</h1>
+                <div id="task-description">This is a test</div>
+                <div id="task-date">September 12, 2025</div>
+              </div>
+              <div id="edit-task-container">
+                <div id="edit-btn">✏</div>
+                <div id="priority-btn">‼</div>
+              </div>
+            </div>
+          </div>
+          <div class="task">
+            <div id="task-container">
+              <div id="task-check-container">
+                <div id="task-check">
+                  <div class="check"></div>
+                </div>
+              </div>
+              <div id="task-grid">
+                <h1 id="task-header">Test2</h1>
+                <div id="task-description">This is a test2</div>
+                <div id="task-date">September 15, 2025</div>
+              </div>
+              <div id="edit-task-container">
+                <div id="edit-btn">✏</div>
+                <div id="priority-btn">‼</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="add-new-project-section hidden" id="add-project-section">
+        <form class="add-project-container" id="new-project-form">
+          <h1>Category:</h1>
+          <input class="add-project-input" type="text" id="category-input" />
+          <h1>Project Name:</h1>
+          <input class="add-project-input" type="text" id="name-input" />
+          <h1>Project Description</h1>
+          <input class="add-project-input" type="text" id="description-input" />
+          <h1>Date Due:</h1>
+          <input class="add-project-date" type="date" id="date-input" />
+          <h1>Priority:</h1>
+          <div class="add-project-radio">
+            <div class="priority">
+              <input
+                type="radio"
+                name="priority"
+                id="high-priority"
+                value="High"
+              />
+              <label for="high-priority" class="priority-box high">High</label>
+            </div>
+            <div class="priority">
+              <input
+                type="radio"
+                name="priority"
+                id="med-priority"
+                value="Medium"
+              />
+              <label for="med-priority" class="priority-box med">Med</label>
+            </div>
+            <div class="priority">
+              <input
+                type="radio"
+                name="priority"
+                id="low-priority"
+                value="Low"
+              />
+              <label for="low-priority" class="priority-box low">Low</label>
+            </div>
+          </div>
+          <div class="submit-cancel-container">
+            <button type="submit" class="add-project-cancel-btn">Cancel</button>
+            <button type="reset" class="add-project-submit-btn">Submit</button>
+          </div>
+        </form>
+      </div>
+      <div class="add-new-task-section hidden" id="add-task-section">
+        <form class="add-task-container" id="add-task-form">
+          <h1>Project Name:</h1>
+          <input class="add-project-input" type="text" id="name-input" />
+          <h1>Project Description</h1>
+          <input class="add-project-input" type="text" id="description-input" />
+          <h1>Date Due:</h1>
+          <input class="add-project-date" type="date" id="date-input" />
+          <h1>Priority:</h1>
+          <div class="add-project-radio">
+            <div class="priority">
+              <input
+                type="radio"
+                name="priority"
+                id="high-priority"
+                value="High"
+              />
+              <label for="high-priority" class="priority-box high">High</label>
+            </div>
+            <div class="priority">
+              <input
+                type="radio"
+                name="priority"
+                id="med-priority"
+                value="Medium"
+              />
+              <label for="med-priority" class="priority-box med">Med</label>
+            </div>
+            <div class="priority">
+              <input
+                type="radio"
+                name="priority"
+                id="low-priority"
+                value="Low"
+              />
+              <label for="low-priority" class="priority-box low">Low</label>
+            </div>
+          </div>
+          <div class="submit-cancel-container">
+            <button type="submit" class="add-task-cancel-btn">Cancel</button>
+            <button type="reset" class="add-task-submit-btn">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+  <script></script>
+</html>
