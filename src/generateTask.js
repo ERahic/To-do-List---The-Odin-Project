@@ -24,7 +24,7 @@ export const taskDomReference = {
   priorityBtn: document.querySelector("#priority-btn"),
 };
 
-export function generateTasks() {
+export function generateTasksAddProject() {
   const taskValue = addProjectValues();
   const addNewTab = newProjectTab();
 
@@ -56,6 +56,29 @@ export function generateTasks() {
   taskDomReference.taskDescription.innerHTML = `${taskValue.descriptionValue}`;
   taskDomReference.taskGrid.appendChild(taskDomReference.taskDescription);
   taskDomReference.taskDate.innerHTML = `${taskValue.dueDateValue}`;
+  taskDomReference.taskGrid.appendChild(taskDomReference.taskDate);
+  taskDomReference.taskContainer.appendChild(
+    taskDomReference.editTaskContainer
+  );
+  taskDomReference.editTaskContainer.appendChild(taskDomReference.editBtn);
+  taskDomReference.editTaskContainer.appendChild(taskDomReference.priorityBtn);
+}
+
+export function generateTasksAddTask() {
+  const taskValue = addProjectValues();
+
+  taskDomReference.projectContainer.appendChild(taskDomReference.task);
+  taskDomReference.task.appendChild(taskDomReference.taskContainer);
+  taskDomReference.taskContainer.appendChild(taskDomReference.checkContainer);
+  taskDomReference.checkContainer.appendChild(taskDomReference.taskCheck);
+  taskDomReference.taskGrid.innerHTML = "";
+  setPriority();
+  taskDomReference.taskContainer.appendChild(taskDomReference.taskGrid);
+  taskDomReference.taskHeader.innerHTML = `${taskValue.taskProjectNameValue}`;
+  taskDomReference.taskGrid.appendChild(taskDomReference.taskHeader);
+  taskDomReference.taskDescription.innerHTML = `${taskValue.taskDescriptionValue}`;
+  taskDomReference.taskGrid.appendChild(taskDomReference.taskDescription);
+  taskDomReference.taskDate.innerHTML = `${taskValue.taskDueDateValue}`;
   taskDomReference.taskGrid.appendChild(taskDomReference.taskDate);
   taskDomReference.taskContainer.appendChild(
     taskDomReference.editTaskContainer

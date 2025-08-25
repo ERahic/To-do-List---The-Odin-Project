@@ -85,13 +85,25 @@
       <div class="add-new-project-section hidden" id="add-project-section">
         <form class="add-project-container" id="new-project-form">
           <h1>Category:</h1>
-          <input class="add-project-input" type="text" id="category-input" />
+          <input
+            class="add-project-input"
+            type="text"
+            id="project-category-input"
+          />
           <h1>Project Name:</h1>
-          <input class="add-project-input" type="text" id="name-input" />
+          <input
+            class="add-project-input"
+            type="text"
+            id="project-name-input"
+          />
           <h1>Project Description</h1>
-          <input class="add-project-input" type="text" id="description-input" />
+          <input
+            class="add-project-input"
+            type="text"
+            id="project-description-input"
+          />
           <h1>Date Due:</h1>
-          <input class="add-project-date" type="date" id="date-input" />
+          <input class="add-project-date" type="date" id="project-date-input" />
           <h1>Priority:</h1>
           <div class="add-project-radio">
             <div class="priority">
@@ -131,18 +143,22 @@
       <div class="add-new-task-section hidden" id="add-task-section">
         <form class="add-task-container" id="add-task-form">
           <h1>Project Name:</h1>
-          <input class="add-project-input" type="text" id="name-input" />
+          <input class="add-project-input" type="text" id="task-name-input" />
           <h1>Project Description</h1>
-          <input class="add-project-input" type="text" id="description-input" />
+          <input
+            class="add-project-input"
+            type="text"
+            id="task-description-input"
+          />
           <h1>Date Due:</h1>
-          <input class="add-project-date" type="date" id="date-input" />
+          <input class="add-project-date" type="date" id="task-date-input" />
           <h1>Priority:</h1>
           <div class="add-project-radio">
             <div class="priority">
               <input
                 type="radio"
                 name="priority"
-                id="high-priority"
+                id="task-high-priority"
                 value="High"
               />
               <label for="high-priority" class="priority-box high">High</label>
@@ -151,7 +167,7 @@
               <input
                 type="radio"
                 name="priority"
-                id="med-priority"
+                id="task-med-priority"
                 value="Medium"
               />
               <label for="med-priority" class="priority-box med">Med</label>
@@ -160,15 +176,15 @@
               <input
                 type="radio"
                 name="priority"
-                id="low-priority"
+                id="task-low-priority"
                 value="Low"
               />
               <label for="low-priority" class="priority-box low">Low</label>
             </div>
           </div>
           <div class="submit-cancel-container">
-            <button type="submit" class="add-task-cancel-btn">Cancel</button>
-            <button type="reset" class="add-task-submit-btn">Submit</button>
+            <button type="reset" class="add-task-cancel-btn">Cancel</button>
+            <button type="submit" class="add-task-submit-btn">Submit</button>
           </div>
         </form>
       </div>
