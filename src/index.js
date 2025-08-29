@@ -1,6 +1,6 @@
 import "./styles.css";
 import { addProjectBtns } from "./addProject";
-import { deleteTask } from "./generateTask";
+import { deleteDefaultTask } from "./generateTask";
 
 addProjectBtns();
-deleteTask();
+deleteDefaultTask();

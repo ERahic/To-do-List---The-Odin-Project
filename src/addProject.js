@@ -1,7 +1,8 @@
 import "./styles.css";
 import {
+  displayNewProjects,
   generateTasksAddProject,
-  generateTasksAddTask,
+  displayNewTasks,
   taskDomReference,
 } from "./generateTask";
 
@@ -62,7 +63,7 @@ export function addProjectBtns() {
       Description: ${value.descriptionValue}
       Due Date: ${value.dueDateValue}
       Priority: ${value.priority}`);
-    generateTasksAddProject();
+    displayNewProjects();
     domReference.newProjectForm.reset();
   });
 
@@ -86,12 +87,13 @@ export function addProjectBtns() {
     const value = addProjectValues();
     domReference.addTaskContainer.classList.add("hidden");
     console.log("Submit button clicked");
+    console.log("New Task Added");
     console.log(`
       Project Name: ${value.taskProjectNameValue}
       Description: ${value.taskDescriptionValue}
       Due Date: ${value.taskDueDateValue}
       Priority: ${value.priority}`);
-    generateTasksAddTask();
+    displayNewTasks();
     domReference.addTaskForm.reset();
   });
 }
