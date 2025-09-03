@@ -210,11 +210,11 @@ export function setPriority(taskContainer) {
   const priorityValue = addProjectValues();
 
   if (priorityValue.priority === "High") {
-    taskContainer.style.borderRight = "solid 40px red";
+    taskContainer.style.borderRight = "40px solid red";
   } else if (priorityValue.priority === "Medium") {
-    taskContainer.style.borderRight = "solid 40px yellow";
+    taskContainer.style.borderRight = "40px solid yellow";
   } else if (priorityValue.priority === "Low") {
-    taskContainer.style.borderRight = "solid 40px green";
+    taskContainer.style.borderRight = "40px solid green";
   }
 }
 

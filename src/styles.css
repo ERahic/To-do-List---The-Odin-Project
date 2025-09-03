@@ -115,7 +115,7 @@ html {
   margin-right: auto;
   border: solid 0.1rem black;
   border-radius: 1rem;
-  border-right: solid 40px red;
+  border-right: 40px solid red;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
   justify-content: center;

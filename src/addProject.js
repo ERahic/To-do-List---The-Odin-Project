@@ -5,6 +5,10 @@ import {
   displayNewTasks,
   taskDomReference,
 } from "./generateTask";
+import {
+  pushProjectValueToArray,
+  pushTaskValueToArray,
+} from "./arrayOfProjects";
 
 export const domReference = {
   // add project
@@ -64,6 +68,7 @@ export function addProjectBtns() {
       Due Date: ${value.dueDateValue}
       Priority: ${value.priority}`);
     displayNewProjects();
+    pushProjectValueToArray();
     domReference.newProjectForm.reset();
   });
 
@@ -94,6 +99,7 @@ export function addProjectBtns() {
       Due Date: ${value.taskDueDateValue}
       Priority: ${value.priority}`);
     displayNewTasks();
+    pushTaskValueToArray();
     domReference.addTaskForm.reset();
   });
 }
