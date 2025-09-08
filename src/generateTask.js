@@ -1,4 +1,5 @@
 import { domReference, addProjectBtns, addProjectValues } from "./addProject";
+import { addedProjects } from "./arrayOfProjects";
 
 export const taskDomReference = {
   sidebarOptions: document.querySelector("#sidebar-options"),
@@ -24,8 +25,12 @@ export const taskDomReference = {
   priorityBtn: document.querySelector(".priority-btn"),
 };
 
-export function generateDivs() {
+export function generateDivs(newProjectId) {
   const taskValue = addProjectValues();
+
+  const newProject = addedProjects.find(
+    (project) => project.id === newProjectId
+  );
 
   // taskDomReference.mainSection.innerHTML = "";
   // taskDomReference.projectContainer.innerHTML = "";
@@ -63,7 +68,7 @@ export function generateDivs() {
   // create divs
   const projectHeader = document.createElement("h1");
   projectHeader.classList.add("project-header");
-  projectHeader.innerHTML = `#${taskValue.categoryValue}`;
+  projectHeader.innerHTML = `#${newProject.category}`;
 
   const task = document.createElement("div");
   task.classList.add("task");
@@ -89,15 +94,15 @@ export function generateDivs() {
 
   const taskHeader = document.createElement("h1");
   taskHeader.classList.add("task-header");
-  taskHeader.innerHTML = `${taskValue.projectNameValue}`;
+  taskHeader.innerHTML = `${newProject.projectName}`;
 
   const taskDescription = document.createElement("div");
   taskDescription.classList.add("task-description");
-  taskDescription.innerHTML = `${taskValue.descriptionValue}`;
+  taskDescription.innerHTML = `${newProject.projectDescription}`;
 
   const taskDate = document.createElement("div");
   taskDate.classList.add("task-date");
-  taskDate.innerHTML = `${taskValue.dueDateValue}`;
+  taskDate.innerHTML = `${newProject.dateDue}`;
 
   const editTaskContainer = document.createElement("div");
   editTaskContainer.classList.add("edit-task-container");
@@ -127,12 +132,12 @@ export function generateDivs() {
   };
 }
 
-export function displayNewProjects() {
-  const generatedProjects = generateDivs();
+export function displayNewProjects(newProjectId) {
+  const generatedProjects = generateDivs(newProjectId);
 
   //new project category on sidebar
-  const addNewTab = newProjectTab();
-  taskDomReference.sidebarOptions.appendChild(addNewTab.newTab);
+  // const addNewTab = newProjectTab();
+  // taskDomReference.sidebarOptions.appendChild(addNewTab.newTab);
   //display project onto main section
   taskDomReference.mainSection.innerHTML = "";
   taskDomReference.projectContainer.innerHTML = "";
@@ -156,7 +161,7 @@ export function displayNewProjects() {
   generatedProjects.taskGrid.appendChild(generatedProjects.taskHeader);
   generatedProjects.taskGrid.appendChild(generatedProjects.taskDescription);
   generatedProjects.taskGrid.appendChild(generatedProjects.taskDate);
-  setPriority(generatedProjects.taskContainer);
+  setPriority(generatedProjects.taskContainer, newProjectId);
   generatedProjects.taskContainer.appendChild(
     generatedProjects.editTaskContainer
   );
@@ -206,25 +211,42 @@ export function displayNewTasks() {
   divs.editTaskContainer.appendChild(divs.priorityBtn);
 }
 
-export function setPriority(taskContainer) {
+export function setPriority(taskContainer, newProjectId) {
   const priorityValue = addProjectValues();
+  const newProject = addedProjects.find(
+    (project) => project.id === newProjectId
+  );
 
-  if (priorityValue.priority === "High") {
+  if (newProject.priority === "High") {
     taskContainer.style.borderRight = "40px solid red";
-  } else if (priorityValue.priority === "Medium") {
+  } else if (newProject.priority === "Medium") {
     taskContainer.style.borderRight = "40px solid yellow";
-  } else if (priorityValue.priority === "Low") {
+  } else if (newProject.priority === "Low") {
     taskContainer.style.borderRight = "40px solid green";
   }
 }
 
-export function newProjectTab() {
+export function newProjectTab(newProjectId) {
   const value = addProjectValues();
+  const newProject = addedProjects.find(
+    (project) => project.id === newProjectId
+  );
   const newTab = document.createElement("div");
   newTab.classList.add(`new-tab`);
-  newTab.innerHTML = `#${value.categoryValue}`;
+  newTab.innerHTML = `#${newProject.category}`;
+  newTab.dataset.id = newProjectId;
+
+  newTab.addEventListener("click", function () {
+    displayNewProjects(newProjectId);
+  });
 
   return { newTab };
+}
+
+export function addNewTabToSidebar(newProjectId) {
+  const { newTab } = newProjectTab(newProjectId);
+  taskDomReference.sidebarOptions.appendChild(newTab);
+  displayNewProjects(newProjectId);
 }
 
 export function deleteDefaultTask() {

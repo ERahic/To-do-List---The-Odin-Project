@@ -9,6 +9,7 @@ export function pushProjectValueToArray() {
   const value = addProjectValues();
 
   const project = {
+    id: crypto.randomUUID(),
     category: value.categoryValue,
     projectName: value.projectNameValue,
     projectDescription: value.descriptionValue,
@@ -18,6 +19,8 @@ export function pushProjectValueToArray() {
 
   addedProjects.push(project);
   console.log("Project Added To Array: ", addedProjects);
+
+  return project.id;
 }
 
 export function pushTaskValueToArray() {

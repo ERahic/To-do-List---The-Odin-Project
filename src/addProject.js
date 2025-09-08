@@ -4,6 +4,7 @@ import {
   generateTasksAddProject,
   displayNewTasks,
   taskDomReference,
+  addNewTabToSidebar,
 } from "./generateTask";
 import {
   pushProjectValueToArray,
@@ -59,6 +60,7 @@ export function addProjectBtns() {
   domReference.addProjectSubmitBtn.addEventListener("click", function (e) {
     e.preventDefault();
     const value = addProjectValues();
+    const projectId = pushProjectValueToArray();
     domReference.projectContainer.classList.add("hidden");
     console.log(`Submit button clicked`);
     console.log(`New Project:
@@ -66,9 +68,11 @@ export function addProjectBtns() {
       Project Name: ${value.projectNameValue}
       Description: ${value.descriptionValue}
       Due Date: ${value.dueDateValue}
-      Priority: ${value.priority}`);
-    displayNewProjects();
-    pushProjectValueToArray();
+      Priority: ${value.priority}
+      ID: ${projectId}`);
+    // displayNewProjects();
+    // pushProjectValueToArray();
+    addNewTabToSidebar(projectId);
     domReference.newProjectForm.reset();
   });
 
