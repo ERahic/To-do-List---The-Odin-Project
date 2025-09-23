@@ -23,11 +23,14 @@ export function pushProjectValueToArray() {
   return project.id;
 }
 
-export function pushTaskValueToArray() {
+export function pushTaskValueToArray(projectId) {
   const value = addProjectValues();
+  const project = addedProjects.find((project) => project.id === projectId);
 
   const task = {
-    taskCategory: value.categoryValue,
+    projectId: projectId,
+    taskId: crypto.randomUUID(),
+    taskCategory: project.category,
     taskName: value.taskProjectNameValue,
     taskDescription: value.taskDescriptionValue,
     taskDate: value.taskDueDateValue,
@@ -36,4 +39,5 @@ export function pushTaskValueToArray() {
 
   addedTasks.push(task);
   console.log("Task Added To Array: ", addedTasks);
+  return task;
 }

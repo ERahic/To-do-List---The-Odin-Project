@@ -1,5 +1,5 @@
 import { domReference, addProjectBtns, addProjectValues } from "./addProject";
-import { addedProjects } from "./arrayOfProjects";
+import { addedProjects, addedTasks } from "./arrayOfProjects";
 
 export const taskDomReference = {
   sidebarOptions: document.querySelector("#sidebar-options"),
@@ -25,7 +25,7 @@ export const taskDomReference = {
   priorityBtn: document.querySelector(".priority-btn"),
 };
 
-export function generateDivs(newProjectId) {
+export function generateProjectDivs(newProjectId) {
   const taskValue = addProjectValues();
 
   const newProject = addedProjects.find(
@@ -132,8 +132,88 @@ export function generateDivs(newProjectId) {
   };
 }
 
+export function generateTaskDivs(task) {
+  const newTask = document.createElement("div");
+  newTask.classList.add("task");
+  newTask.dataset.taskId = task.taskId;
+  newTask.dataset.projectId = task.projectId;
+
+  const newTaskContainer = document.createElement("div");
+  newTaskContainer.classList.add("task-container");
+
+  const newTaskCheckContainer = document.createElement("div");
+  newTaskCheckContainer.classList.add("task-check-container");
+
+  const newTaskCheck = document.createElement("div");
+  newTaskCheck.classList.add("task-check");
+
+  const newCheck = document.createElement("div");
+  newCheck.classList.add("check");
+  newCheck.addEventListener("click", function () {
+    console.log("Task Cleared");
+    newCheck.parentElement.parentElement.parentElement.remove();
+  });
+
+  const newTaskGrid = document.createElement("div");
+  newTaskGrid.classList.add("task-grid");
+
+  const newTaskHeader = document.createElement("h1");
+  newTaskHeader.classList.add("task-header");
+  newTaskHeader.innerHTML = `${task.taskName}`;
+
+  const newTaskDescription = document.createElement("div");
+  newTaskDescription.classList.add("task-description");
+  newTaskDescription.innerHTML = `${task.taskDescription}`;
+
+  const newTaskDate = document.createElement("div");
+  newTaskDate.classList.add("task-date");
+  newTaskDate.innerHTML = `${task.taskDate}`;
+
+  const newEditTaskContainer = document.createElement("div");
+  newEditTaskContainer.classList.add("edit-task-container");
+
+  const newEditBtn = document.createElement("div");
+  newEditBtn.classList.add("edit-btn");
+  newEditBtn.innerHTML = "✏";
+
+  const newPriorityBtn = document.createElement("div");
+  newPriorityBtn.classList.add("priority-btn");
+  newPriorityBtn.innerHTML = "‼";
+
+  return {
+    newTask,
+    newTaskContainer,
+    newTaskCheckContainer,
+    newTaskCheck,
+    newCheck,
+    newTaskGrid,
+    newTaskHeader,
+    newTaskDescription,
+    newTaskDate,
+    newEditTaskContainer,
+    newEditBtn,
+    newPriorityBtn,
+  };
+  // taskDomReference.projectContainer.appendChild(divs.task);
+  // divs.task.appendChild(divs.taskContainer);
+  // divs.taskContainer.appendChild(divs.taskCheckContainer);
+  // divs.taskCheckContainer.appendChild(divs.taskCheck);
+  // divs.taskCheck.appendChild(divs.check);
+  // divs.taskContainer.appendChild(divs.taskGrid);
+  // divs.taskGrid.appendChild(divs.taskHeader);
+  // divs.taskHeader.innerHTML = `${taskValue.taskProjectNameValue}`;
+  // divs.taskGrid.appendChild(divs.taskDescription);
+  // divs.taskDescription.innerHTML = `${taskValue.taskDescriptionValue}`;
+  // divs.taskGrid.appendChild(divs.taskDate);
+  // divs.taskDate.innerHTML = `${taskValue.taskDueDateValue}`;
+  // setPriority(divs.taskContainer, newProjectId);
+  // divs.taskContainer.appendChild(divs.editTaskContainer);
+  // divs.editTaskContainer.appendChild(divs.editBtn);
+  // divs.editTaskContainer.appendChild(divs.priorityBtn);
+}
+
 export function displayNewProjects(newProjectId) {
-  const generatedProjects = generateDivs(newProjectId);
+  const generatedProjects = generateProjectDivs(newProjectId);
 
   //new project category on sidebar
   // const addNewTab = newProjectTab();
@@ -171,8 +251,32 @@ export function displayNewProjects(newProjectId) {
   );
 }
 
-export function displayNewTasks() {
+export function displayNewTasks(projectId) {
   const taskValue = addProjectValues();
+
+  const tasksRelatedToProject = addedTasks.filter(
+    (task) => task.projectId === projectId
+  );
+
+  tasksRelatedToProject.forEach((task) => {
+    const divs = generateTaskDivs(task);
+    taskDomReference.projectContainer.appendChild(divs.newTask);
+    divs.newTask.appendChild(divs.newTaskContainer);
+    divs.newTaskContainer.appendChild(divs.newTaskCheckContainer);
+    divs.newTaskCheckContainer.appendChild(divs.newTaskCheck);
+    divs.newTaskCheck.appendChild(divs.newCheck);
+    divs.newTaskContainer.appendChild(divs.newTaskGrid);
+    divs.newTaskGrid.appendChild(divs.newTaskHeader);
+    divs.newTaskHeader.innerHTML = `${task.taskName}`;
+    divs.newTaskGrid.appendChild(divs.newTaskDescription);
+    divs.newTaskDescription.innerHTML = `${task.taskDescription}`;
+    divs.newTaskGrid.appendChild(divs.newTaskDate);
+    divs.newTaskDate.innerHTML = `${task.taskDate}`;
+    setPriority(divs.newTaskContainer, projectId);
+    divs.newTaskContainer.appendChild(divs.newEditTaskContainer);
+    divs.newEditTaskContainer.appendChild(divs.newEditBtn);
+    divs.newEditTaskContainer.appendChild(divs.newPriorityBtn);
+  });
 
   // taskDomReference.projectContainer.appendChild(taskDomReference.task);
   // taskDomReference.task.appendChild(taskDomReference.taskContainer);
@@ -192,23 +296,24 @@ export function displayNewTasks() {
   // );
   // taskDomReference.editTaskContainer.appendChild(taskDomReference.editBtn);
   // taskDomReference.editTaskContainer.appendChild(taskDomReference.priorityBtn);
-  const divs = generateDivs();
-  taskDomReference.projectContainer.appendChild(divs.task);
-  divs.task.appendChild(divs.taskContainer);
-  divs.taskContainer.appendChild(divs.taskCheckContainer);
-  divs.taskCheckContainer.appendChild(divs.taskCheck);
-  divs.taskCheck.appendChild(divs.check);
-  divs.taskContainer.appendChild(divs.taskGrid);
-  divs.taskGrid.appendChild(divs.taskHeader);
-  divs.taskHeader.innerHTML = `${taskValue.taskProjectNameValue}`;
-  divs.taskGrid.appendChild(divs.taskDescription);
-  divs.taskDescription.innerHTML = `${taskValue.taskDescriptionValue}`;
-  divs.taskGrid.appendChild(divs.taskDate);
-  divs.taskDate.innerHTML = `${taskValue.taskDueDateValue}`;
-  setPriority(divs.taskContainer);
-  divs.taskContainer.appendChild(divs.editTaskContainer);
-  divs.editTaskContainer.appendChild(divs.editBtn);
-  divs.editTaskContainer.appendChild(divs.priorityBtn);
+
+  // const divs = generateTaskDivs();
+  // taskDomReference.projectContainer.appendChild(divs.newTask);
+  // divs.newTask.appendChild(divs.newTaskContainer);
+  // divs.newTaskContainer.appendChild(divs.newTaskCheckContainer);
+  // divs.newTaskCheckContainer.appendChild(divs.newTaskCheck);
+  // divs.newTaskCheck.appendChild(divs.newCheck);
+  // divs.newTaskContainer.appendChild(divs.newTaskGrid);
+  // divs.newTaskGrid.appendChild(divs.newTaskHeader);
+  // divs.newTaskHeader.innerHTML = `${taskValue.taskProjectNameValue}`;
+  // divs.newTaskGrid.appendChild(divs.taskDescription);
+  // divs.newTaskDescription.innerHTML = `${taskValue.taskDescriptionValue}`;
+  // divs.newTaskGrid.appendChild(divs.newTaskDate);
+  // divs.newTaskDate.innerHTML = `${taskValue.taskDueDateValue}`;
+  // setPriority(divs.newTaskContainer, newProjectId);
+  // divs.newTaskContainer.appendChild(divs.newEditTaskContainer);
+  // divs.newEditTaskContainer.appendChild(divs.newEditBtn);
+  // divs.newEditTaskContainer.appendChild(divs.newPriorityBtn);
 }
 
 export function setPriority(taskContainer, newProjectId) {
@@ -235,9 +340,15 @@ export function newProjectTab(newProjectId) {
   newTab.classList.add(`new-tab`);
   newTab.innerHTML = `#${newProject.category}`;
   newTab.dataset.id = newProjectId;
+  newTab.dataset.category = newProject.category;
 
-  newTab.addEventListener("click", function () {
+  newTab.addEventListener("click", function (e) {
+    const tabClicked = e.currentTarget.dataset.category;
+    const tabClickID = e.currentTarget.dataset.id;
+    console.log("Clicked Tab:", tabClicked, "\n", "ID:", tabClickID);
+    domReference.addTaskContainer.dataset.projectId = tabClickID;
     displayNewProjects(newProjectId);
+    displayNewTasks(newProjectId);
   });
 
   return { newTab };

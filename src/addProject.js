@@ -102,8 +102,9 @@ export function addProjectBtns() {
       Description: ${value.taskDescriptionValue}
       Due Date: ${value.taskDueDateValue}
       Priority: ${value.priority}`);
-    displayNewTasks();
-    pushTaskValueToArray();
+    const projectId = domReference.addTaskContainer.dataset.projectId;
+    pushTaskValueToArray(projectId);
+    displayNewTasks(projectId);
     domReference.addTaskForm.reset();
   });
 }
@@ -133,11 +134,11 @@ export function addProjectValues() {
 
   //add task
   if (domReference.taskPriorityHigh.checked) {
-    priority = domReference.priorityHigh.value;
+    priority = domReference.taskPriorityHigh.value;
   } else if (domReference.taskPriorityMed.checked) {
-    priority = domReference.priorityMed.value;
+    priority = domReference.taskPriorityMed.value;
   } else if (domReference.taskPriorityLow.checked) {
-    priority = domReference.priorityLow.value;
+    priority = domReference.taskPriorityLow.value;
   }
 
   return {
