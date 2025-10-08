@@ -34,7 +34,7 @@ export function pushTaskValueToArray(projectId) {
     taskName: value.taskProjectNameValue,
     taskDescription: value.taskDescriptionValue,
     taskDate: value.taskDueDateValue,
-    taskPriority: value.priority,
+    taskPriority: value.taskPriority,
   };
 
   addedTasks.push(task);

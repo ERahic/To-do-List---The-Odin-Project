@@ -101,7 +101,7 @@ export function addProjectBtns() {
       Project Name: ${value.taskProjectNameValue}
       Description: ${value.taskDescriptionValue}
       Due Date: ${value.taskDueDateValue}
-      Priority: ${value.priority}`);
+      Priority: ${value.taskPriority}`);
     const projectId = domReference.addTaskContainer.dataset.projectId;
     pushTaskValueToArray(projectId);
     displayNewTasks(projectId);
@@ -133,12 +133,13 @@ export function addProjectValues() {
   }
 
   //add task
+  let taskPriority = null;
   if (domReference.taskPriorityHigh.checked) {
-    priority = domReference.taskPriorityHigh.value;
+    taskPriority = domReference.taskPriorityHigh.value;
   } else if (domReference.taskPriorityMed.checked) {
-    priority = domReference.taskPriorityMed.value;
+    taskPriority = domReference.taskPriorityMed.value;
   } else if (domReference.taskPriorityLow.checked) {
-    priority = domReference.taskPriorityLow.value;
+    taskPriority = domReference.taskPriorityLow.value;
   }
 
   return {
@@ -150,5 +151,6 @@ export function addProjectValues() {
     taskProjectNameValue,
     taskDescriptionValue,
     taskDueDateValue,
+    taskPriority,
   };
 }

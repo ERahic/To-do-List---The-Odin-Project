@@ -71,7 +71,7 @@ export function generateProjectDivs(newProjectId) {
   projectHeader.innerHTML = `#${newProject.category}`;
 
   const task = document.createElement("div");
-  task.classList.add("task");
+  task.classList.add("project-task");
 
   const taskContainer = document.createElement("div");
   taskContainer.classList.add("task-container");
@@ -241,7 +241,7 @@ export function displayNewProjects(newProjectId) {
   generatedProjects.taskGrid.appendChild(generatedProjects.taskHeader);
   generatedProjects.taskGrid.appendChild(generatedProjects.taskDescription);
   generatedProjects.taskGrid.appendChild(generatedProjects.taskDate);
-  setPriority(generatedProjects.taskContainer, newProjectId);
+  setProjectPriority(generatedProjects.taskContainer, newProjectId);
   generatedProjects.taskContainer.appendChild(
     generatedProjects.editTaskContainer
   );
@@ -258,6 +258,10 @@ export function displayNewTasks(projectId) {
     (task) => task.projectId === projectId
   );
 
+  taskDomReference.projectContainer
+    .querySelectorAll(".task")
+    .forEach((task) => task.remove());
+
   tasksRelatedToProject.forEach((task) => {
     const divs = generateTaskDivs(task);
     taskDomReference.projectContainer.appendChild(divs.newTask);
@@ -272,7 +276,7 @@ export function displayNewTasks(projectId) {
     divs.newTaskDescription.innerHTML = `${task.taskDescription}`;
     divs.newTaskGrid.appendChild(divs.newTaskDate);
     divs.newTaskDate.innerHTML = `${task.taskDate}`;
-    setPriority(divs.newTaskContainer, projectId);
+    setTaskPriority(divs.newTaskContainer, task);
     divs.newTaskContainer.appendChild(divs.newEditTaskContainer);
     divs.newEditTaskContainer.appendChild(divs.newEditBtn);
     divs.newEditTaskContainer.appendChild(divs.newPriorityBtn);
@@ -316,7 +320,7 @@ export function displayNewTasks(projectId) {
   // divs.newEditTaskContainer.appendChild(divs.newPriorityBtn);
 }
 
-export function setPriority(taskContainer, newProjectId) {
+export function setProjectPriority(taskContainer, newProjectId) {
   const priorityValue = addProjectValues();
   const newProject = addedProjects.find(
     (project) => project.id === newProjectId
@@ -328,6 +332,16 @@ export function setPriority(taskContainer, newProjectId) {
     taskContainer.style.borderRight = "40px solid yellow";
   } else if (newProject.priority === "Low") {
     taskContainer.style.borderRight = "40px solid green";
+  }
+}
+
+export function setTaskPriority(newTaskContainer, task) {
+  if (task.taskPriority === "High") {
+    newTaskContainer.style.borderRight = "40px solid red";
+  } else if (task.taskPriority === "Medium") {
+    newTaskContainer.style.borderRight = "40px solid yellow";
+  } else if (task.taskPriority === "Low") {
+    newTaskContainer.style.borderRight = "40px solid green";
   }
 }
 
@@ -358,6 +372,8 @@ export function addNewTabToSidebar(newProjectId) {
   const { newTab } = newProjectTab(newProjectId);
   taskDomReference.sidebarOptions.appendChild(newTab);
   displayNewProjects(newProjectId);
+
+  newTab.click();
 }
 
 export function deleteDefaultTask() {
