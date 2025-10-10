@@ -3,6 +3,7 @@ import { addedProjects, addedTasks } from "./arrayOfProjects";
 
 export const taskDomReference = {
   sidebarOptions: document.querySelector("#sidebar-options"),
+  allProjectsTab: document.querySelector(".all-projects-tab"),
   pageContainer: document.querySelector("#page-container"),
   mainSection: document.querySelector("#main-section"),
   projectContainer: document.querySelector("#project-container"),
@@ -361,6 +362,10 @@ export function newProjectTab(newProjectId) {
     const tabClickID = e.currentTarget.dataset.id;
     console.log("Clicked Tab:", tabClicked, "\n", "ID:", tabClickID);
     domReference.addTaskContainer.dataset.projectId = tabClickID;
+
+    taskDomReference.sortFilterContainer.appendChild(
+      taskDomReference.addTaskBtn
+    );
     displayNewProjects(newProjectId);
     displayNewTasks(newProjectId);
   });
@@ -381,6 +386,49 @@ export function deleteDefaultTask() {
     check.addEventListener("click", function () {
       console.log("Task Cleared");
       check.parentElement.parentElement.parentElement.remove();
+    });
+  });
+}
+
+//SHOW ALL PROJECTS
+export function openAllProjects() {
+  const allProjects = addedProjects;
+
+  taskDomReference.allProjectsTab.addEventListener("click", function () {
+    console.log("All Projects Tab Clicked");
+
+    taskDomReference.projectContainer.innerHTML = "";
+    const allProjectsHeader = document.createElement("h1");
+    allProjectsHeader.classList.add("project-header");
+    allProjectsHeader.innerHTML = "All Projects:";
+
+    taskDomReference.projectContainer.appendChild(allProjectsHeader);
+
+    taskDomReference.projectContainer.appendChild(
+      taskDomReference.sortFilterContainer
+    );
+    taskDomReference.addTaskBtn.classList.add("hidden");
+
+    allProjects.forEach((project) => {
+      console.log(`ID: ${project.id} \n Project Name: ${project.category}`);
+      const projectDiv = document.createElement("div");
+      projectDiv.classList.add("project-div");
+
+      const allProjectCellContainer = document.createElement("div");
+      allProjectCellContainer.classList.add("all-project-cell-container");
+
+      const projectName = document.createElement("h1");
+      projectName.classList.add("project-name");
+      projectName.innerHTML = project.category;
+
+      taskDomReference.projectContainer.appendChild(projectDiv);
+      projectDiv.appendChild(allProjectCellContainer);
+      allProjectCellContainer.appendChild(projectName);
+
+      allProjectCellContainer.addEventListener("click", function () {
+        console.log(`ID: ${project.id} \n Project Name: ${project.category}`);
+        displayNewProjects(project.id);
+      });
     });
   });
 }
